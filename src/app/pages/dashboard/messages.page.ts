@@ -1,7 +1,7 @@
 import { Component, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DashboardNav } from '../../components/dashboardNav';
-import { MessagesService } from 'src/app/services/message.service';
+import { MessagesService } from '../../services/message.service';
 
 @Component({
   selector: 'dashboard-messages',
