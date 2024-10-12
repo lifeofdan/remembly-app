@@ -30,9 +30,18 @@ import { Router } from '@angular/router';
           [(ngModel)]="password"
         />
       </label>
-      <div class="mb-4" [class]="!error ? 'invisible' : ''">
-        <p class="text-error">Invalid Email Or Password</p>
-      </div>
+
+      <!-- Not sure this is better than [class="isValid ? 'invisible' ''"] but it is more "the angular way"-->
+      @if (!isValid) {
+        <div class="mb-4">
+          <p class="text-error">Invalid Email Or Password</p>
+        </div>
+      } @else {
+        <div class="mb-4">
+          <p>&nbsp;</p>
+        </div>
+      }
+
       <button
         (click)="onSubmit(); $event.preventDefault()"
         class="btn btn-primary"
@@ -47,13 +56,15 @@ export class LoginForm {
   email = model('');
   password = model('');
 
-  error = false;
+  isValid = true;
 
   constructor(private router: Router) {
     effect(() => {
       this.email();
       this.password();
-      this.error = false;
+
+      // We could do real-time validation for valid email/password if we wanted to give feedback on whether it was a valid formatted email/password
+      this.isValid = true;
     });
   }
 
@@ -69,6 +80,6 @@ export class LoginForm {
       return;
     }
 
-    this.error = true;
+    this.isValid = false;
   }
 }

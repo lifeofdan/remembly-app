@@ -13,7 +13,7 @@ import { DashboardNav } from '../../components/dashboardNav';
     <div class="container mx-auto">
       <article class="prose lg:prose-xl mx-auto mt-16">
         <h1 class="text-center">Messages</h1>
-        <div *ngFor="let message of messages()">
+        @for (message of messages(); track message) {
           <div class="flex gap-4 items-center">
             <div
               class="bg-primary rounded-full min-w-12 w-12 h-12 flex flex-col justify-center items-center font-bold"
@@ -22,7 +22,7 @@ import { DashboardNav } from '../../components/dashboardNav';
             </div>
             <p>{{ message }}</p>
           </div>
-        </div>
+        }
       </article>
     </div>
   `,
