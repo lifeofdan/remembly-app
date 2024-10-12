@@ -1,4 +1,4 @@
-import { eventHandler, defineEventHandler } from 'h3';
+import { defineEventHandler } from 'h3';
 
 export type TMessagesResponse = {
   data: [
