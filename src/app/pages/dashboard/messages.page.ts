@@ -1,9 +1,7 @@
-import { Component, signal } from '@angular/core';
-import { inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { Component, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TMessagesResponse } from 'src/server/routes/v1/messages';
 import { DashboardNav } from '../../components/dashboardNav';
+import { MessagesService } from 'src/app/services/message.service';
 
 @Component({
   selector: 'dashboard-messages',
@@ -29,16 +27,12 @@ import { DashboardNav } from '../../components/dashboardNav';
   imports: [CommonModule, DashboardNav],
 })
 export default class MessagesComponent {
-  http = inject(HttpClient);
+  messagesService = inject(MessagesService);
   messages = signal<string[]>([]);
 
   ngOnInit() {
-    this.getMessages().subscribe((response) => {
+    this.messagesService.getMessages().subscribe((response) => {
       this.messages.set(response.data.map((data) => data.attributes.content));
     });
-  }
-
-  getMessages() {
-    return this.http.get<TMessagesResponse>('/api/v1/messages');
   }
 }
