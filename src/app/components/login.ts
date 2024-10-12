@@ -1,4 +1,4 @@
-import { Component, effect, signal } from '@angular/core';
+import { Component, effect, model } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -44,8 +44,8 @@ import { Router } from '@angular/router';
   imports: [FormsModule],
 })
 export class LoginForm {
-  email = signal('');
-  password = signal('');
+  email = model('');
+  password = model('');
 
   error = false;
 
