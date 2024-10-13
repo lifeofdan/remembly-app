@@ -18,7 +18,9 @@ export type TMessagesResponse = {
 };
 
 export default defineEventHandler(async () => {
-  const response = await fetch('http://localhost:4000/api/messages');
+  const response = await fetch(
+    `${import.meta.env['VITE_API_URL']}/api/messages`,
+  );
   const messages: TMessagesResponse = await response.json();
 
   return messages;
