@@ -5,13 +5,15 @@ export type TMessagesResponse = {
     {
       attributes: {
         content: string;
+        inserted_at: string;
+        updated_at: string;
       };
       id: string;
       links: {};
       meta: {};
       type: string;
       relationships: {};
-    }
+    },
   ];
 };
 
